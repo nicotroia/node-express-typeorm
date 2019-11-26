@@ -1,0 +1,7 @@
+version: '3.7'
+
+services:
+  node:
+    volumes:
+      - .:/app
+    command: npm run start

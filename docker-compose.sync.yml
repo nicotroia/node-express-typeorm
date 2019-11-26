@@ -1,0 +1,11 @@
+version: '3.7'
+
+volumes:
+  project-sync:
+    external: true
+
+services:
+  node:
+    volumes:
+      - project-sync:/app:nocopy
+    command: npm run start

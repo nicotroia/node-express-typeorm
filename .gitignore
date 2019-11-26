@@ -1,0 +1,15 @@
+/.idea
+/.vscode
+node_modules
+/dist
+/build
+/coverage
+
+.env
+/.unison*
+/npm-debug.log
+.DS_Store
+*.log
+*.sublime-project
+*.sublime-workspace
+.eslintcache

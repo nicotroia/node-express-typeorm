@@ -1,0 +1,6 @@
+entity: Greeting
+items:
+  greeting1:
+    text: Hello, World!
+  greeting2:
+    text: Hello, TypeORM!
