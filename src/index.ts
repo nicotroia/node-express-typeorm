@@ -21,6 +21,6 @@ createConnection(typeOrmConfig).then(async connection => {
         res.status(500).json({ code: 500, message: err.message }).end();
     });
 
-    app.listen(3000);
-    console.log('Express application is up and running on port 3000');
+    app.listen(process.env.PORT);
+    console.log(`Express application (${process.env.NODE_ENV}) is up and running on port ${process.env.PORT}`);
 }).catch(error => console.log('TypeORM connection error: ', error));

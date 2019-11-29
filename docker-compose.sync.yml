@@ -8,4 +8,4 @@ services:
   node:
     volumes:
       - project-sync:/app:nocopy
-    command: npm run start
+    command: npm run dev

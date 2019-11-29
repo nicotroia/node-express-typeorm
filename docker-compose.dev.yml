@@ -4,4 +4,4 @@ services:
   node:
     volumes:
       - .:/app
-    command: npm run start
+    command: npm run dev
