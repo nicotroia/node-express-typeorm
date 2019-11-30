@@ -4,11 +4,11 @@ import { Greeting } from './entity/Greeting';
 
 const typeOrmConfig: PostgresConnectionOptions = {
     type: 'postgres',
-    host: 'postgres',
-    port: 5432,
-    username: 'postgres',
-    password: '',
-    database: 'project',
+    host: process.env.PG_HOST,
+    port: parseInt(process.env.PG_PORT || ''),
+    username: process.env.PG_USER,
+    password: process.env.PG_PASS,
+    database: process.env.PG_DATABASE,
     synchronize: false,
     logging: false,
     entities: [

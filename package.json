@@ -7,8 +7,8 @@
   "scripts": {
     "build": "tsc",
     "fixtures": "fixtures ./fixtures --config ./dist/typeorm.config.js --sync",
-    "start": "npm install && npm run build && npm run fixtures && node dist/index.js",
-    "dev": "NODE_ENV=develop tsc-watch --onSuccess 'node ./dist/index.js' --onFailure 'echo Oops! Compilation Failed' --compiler typescript/bin/tsc"
+    "start": "NODE_ENV=develop npm install && npm run build && npm run fixtures && node dist/index.js",
+    "dev": "NODE_ENV=develop npm install && npm run build && npm run fixtures && tsc-watch --onSuccess 'node ./dist/index.js' --onFailure 'echo Oops! Compilation Failed' --compiler typescript/bin/tsc"
   },
   "dependencies": {
     "body-parser": "^1.19.0",

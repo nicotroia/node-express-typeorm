@@ -3,7 +3,7 @@ version: '3.7'
 services:
   node:
     build: .
-    container_name: pc-node
+    container_name: my-node
     working_dir: /app
     env_file:
       - .env
@@ -14,10 +14,15 @@ services:
 
   postgres:
     image: postgres:11.6
-    container_name: pc-postgres
+    container_name: my-postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: "${PG_PASS}"
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_DB: ${PG_DATABASE}
     env_file:
       - .env
     ports:
       - "${PG_PORT}:${PG_PORT}"
     volumes:
-      - ./docker/postgres:/docker-entrypoint-initdb.d
+      - ./init/10-postgres.sh:/docker-entrypoint-initdb.d/init.sh
