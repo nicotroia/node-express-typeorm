@@ -5,8 +5,6 @@
 # script would continue its execution.
 set -o errexit
 
-echo "HELLO??????????"
-
 # Creating an array that defines the environment variables
 # that must be set. This can be consumed later via arrray
 # variable expansion ${REQUIRED_ENV_VARS[@]}.

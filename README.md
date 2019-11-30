@@ -9,7 +9,7 @@
 * Run `docker-sync-stack start`
 * Visit <http://localhost:3000/>
 
-Alternatively, you can launch development environment without `docker-sync` by running  
+Alternatively, you can launch development environment without `docker-sync` by running 
 `docker-compose -f docker-compose.yml -f docker-compose.dev.yml up`
 
 ### Connect to Node container
