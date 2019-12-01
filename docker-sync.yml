@@ -10,3 +10,4 @@ syncs:
     notify_terminal: true
     sync_excludes: ['node_modules', '.gitignore', '.git', '.idea', '.vscode']
     watch_excludes: ['.*/.git', '.*/node_modules', '.gitignore', 'package.json']
+    watch_args: '-v'

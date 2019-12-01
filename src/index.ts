@@ -4,8 +4,8 @@ import { Request, Response, NextFunction } from 'express';
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
 
-import * as HomeController from '@/controller/HomeController';
-import typeOrmConfig from '@/typeorm.config';
+import * as HomeController from './controller/HomeController';
+import typeOrmConfig from './typeorm.config';
 
 createConnection(typeOrmConfig).then(async connection => {
     const app = express();

@@ -1,17 +1,14 @@
-FROM centos:7 as builder
+FROM mhart/alpine-node:latest as builder
 
-RUN curl -sL https://rpm.nodesource.com/setup_12.x | bash -
-RUN yum update -y update && \
-    yum install -y nodejs && \
-    yum clean all && \
-    npm install -g typescript
+RUN apk update
+RUN apk add bash
+RUN npm install -g typescript
 
 WORKDIR /app
 COPY . /app
 COPY ./init /docker-entrypoint-initdb.d/
 
-RUN npm ci --only=production
+RUN npm install
+RUN npm run build
 
 EXPOSE ${PORT}
-
-ENTRYPOINT node dist/index.js

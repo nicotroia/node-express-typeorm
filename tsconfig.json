@@ -9,17 +9,14 @@
         "alwaysStrict": true,
         "noEmitOnError": true,
         "experimentalDecorators": true,
+        "noImplicitAny": false,
         "sourceMap": false,
         "watch": false,
-        "baseUrl": ".",
-        "paths": {
-            "@/*": ["src/*", "dist/*"]
-        }
+        "baseUrl": "."
     },
-    "include": [
-        "src/**/*"
-    ],
     "exclude": [
+        "dist",
+        "init",
         "node_modules"
     ]
 }

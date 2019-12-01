@@ -1,6 +1,6 @@
 import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
 
-import { Greeting } from '@/entity/Greeting';
+import { Greeting } from './entity/Greeting';
 
 const typeOrmConfig: PostgresConnectionOptions = {
     type: 'postgres',

@@ -17,6 +17,7 @@ services:
     restart: always
     environment:
       POSTGRES_PASSWORD: "${PG_PASS}"
+    env_file: .env
     ports:
       - "${PG_PORT}:${PG_PORT}"
     volumes:
