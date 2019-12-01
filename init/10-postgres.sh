@@ -45,10 +45,10 @@ Aborting."
 # Performs the initialization in the already-started PostgreSQL
 # using the preconfigured POSTGRE_USER user.
 init_user_and_db() {
-  psql -v ON_ERROR_STOP=1 --username "postgres" <<-EOSQL
-     CREATE USER $PG_USER WITH PASSWORD '$PG_PASS';
-     CREATE DATABASE $PG_DATABASE;
-     GRANT ALL PRIVILEGES ON DATABASE $PG_DATABASE TO $PG_USER;
+  psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
+    CREATE USER $PG_USER WITH PASSWORD '$PG_PASS';
+    CREATE DATABASE $PG_DATABASE;
+    GRANT ALL PRIVILEGES ON DATABASE $PG_DATABASE TO $PG_USER;
 EOSQL
 }
 

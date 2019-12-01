@@ -6,7 +6,6 @@ RUN yum update -y update && \
     yum clean all && \
     npm install -g typescript
 
-VOLUME /app
 WORKDIR /app
 COPY . /app
 COPY ./init /docker-entrypoint-initdb.d/
@@ -14,3 +13,5 @@ COPY ./init /docker-entrypoint-initdb.d/
 RUN npm ci --only=production
 
 EXPOSE ${PORT}
+
+ENTRYPOINT node dist/index.js
