@@ -10,7 +10,10 @@
 * Visit <http://localhost:3000/>
 
 Alternatively, you can launch development environment without `docker-sync` by running 
-`docker-compose -f docker-compose.yml -f docker-compose.dev.yml up`
+`docker-compose -f docker-compose.yml -f docker-compose.dev.yml up` or
+`docker-compose -f docker-compose.yml -f docker-compose.prod.yml up`
+Dev will run tsc in watch mode and 
+Prod will start 2 additional node services load-balanced via nginx
 
 ### Connect to Node container
 
@@ -26,5 +29,5 @@ Default PostgreSQL port is exposed to localhost, so you can connect to it using 
 **Port:** 5432  
 **Username:** postgres  
 **Password:** '' (empty)  
-**Database:** project  
+**Database:** myproject  
 **Schema:** public  

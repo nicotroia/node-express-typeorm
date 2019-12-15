@@ -7,6 +7,9 @@ import * as bodyParser from 'body-parser';
 import * as HomeController from './controller/HomeController';
 import typeOrmConfig from './typeorm.config';
 
+// console.log('process.env', process.env);
+// console.log('typeOrmConfig', typeOrmConfig);
+
 createConnection(typeOrmConfig).then(async connection => {
     const app = express();
     app.use(bodyParser.json());
@@ -21,6 +24,6 @@ createConnection(typeOrmConfig).then(async connection => {
         res.status(500).json({ code: 500, message: err.message }).end();
     });
 
-    app.listen(process.env.PORT);
-    console.log(`Express application (${process.env.NODE_ENV}) is up and running on port ${process.env.PORT}`);
+    app.listen(process.env.NODE_PORT);
+    console.log(`Express application (${process.env.NODE_ENV}) is up and running on port ${process.env.NODE_PORT}`);
 }).catch(error => console.log('TypeORM connection error: ', error));

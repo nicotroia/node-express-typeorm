@@ -1,8 +1,7 @@
-import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
-
-import { Greeting } from './entity/Greeting';
-
-const typeOrmConfig: PostgresConnectionOptions = {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const Greeting_1 = require("./entity/Greeting");
+const typeOrmConfig = {
     type: 'postgres',
     host: process.env.PG_HOST,
     port: parseInt(process.env.PG_PORT || ''),
@@ -12,8 +11,9 @@ const typeOrmConfig: PostgresConnectionOptions = {
     synchronize: false,
     logging: false,
     entities: [
-        Greeting,
-    ]
+        Greeting_1.Greeting,
+    ],
+    migrations: [],
+    subscribers: []
 };
-
-export default typeOrmConfig;
+exports.default = typeOrmConfig;

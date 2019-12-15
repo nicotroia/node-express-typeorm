@@ -1,9 +1,13 @@
 version: '3.7'
 
 services:
-  node:
+  node0:
+    container_name: node0-dev
     environment:
-      NODE_ENV: development
-    volumes:
-      - .:/app
+      NODE_ENV: 'development'
+      MESSAGE: 'hello from instance 0'
     command: npm run dev
+
+  nginx0:
+    volumes:
+      - ./nginx/nginx.dev.conf:/etc/nginx/nginx.conf

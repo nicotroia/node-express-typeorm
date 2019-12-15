@@ -4,7 +4,6 @@ node_modules
 /dist
 /build
 /coverage
-
 .env
 /.unison*
 /npm-debug.log
@@ -13,3 +12,4 @@ node_modules
 *.sublime-project
 *.sublime-workspace
 .eslintcache
+/postgres/data

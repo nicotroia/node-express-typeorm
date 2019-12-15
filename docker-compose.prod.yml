@@ -1,0 +1,49 @@
+version: '3.7'
+
+services:
+  node0:
+    container_name: node0-prod
+    environment:
+      NODE_ENV: 'production'
+      MESSAGE: 'hello from instance 0'
+    command: npm run start
+  
+  node1:
+    build: ./api
+    container_name: node1-prod
+    env_file: ./.env
+    tty: true
+    expose:
+      - "${NODE_PORT}"
+    depends_on:
+      - postgres0
+    volumes:
+      - ./api:/api
+    environment:
+      NODE_ENV: 'production'
+      MESSAGE: 'hello from instance 1'
+    command: npm run start
+  
+  node2:
+    build: ./api
+    container_name: node2-prod
+    env_file: ./.env
+    tty: true
+    expose:
+      - "${NODE_PORT}"
+    depends_on:
+      - postgres0
+    volumes: 
+      - ./api:/api
+    environment:
+      NODE_ENV: 'production'
+      MESSAGE: 'hello from instance 2'
+    command: npm run start
+
+  nginx0:
+    volumes:
+      - ./nginx/nginx.prod.conf:/etc/nginx/nginx.conf
+    links:
+      - node0
+      - node1
+      - node2
