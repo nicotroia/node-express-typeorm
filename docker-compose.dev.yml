@@ -6,8 +6,12 @@ services:
     environment:
       NODE_ENV: 'development'
       MESSAGE: 'hello from instance 0'
+    expose:
+      - "${NODE_PORT}"
     command: npm run dev
 
   nginx0:
     volumes:
       - ./nginx/nginx.dev.conf:/etc/nginx/nginx.conf
+    ports:
+      - "${NGINX_PORT}:80"
