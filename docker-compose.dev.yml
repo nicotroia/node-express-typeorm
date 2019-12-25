@@ -12,6 +12,6 @@ services:
 
   nginx0:
     volumes:
-      - ./nginx/nginx.dev.conf:/etc/nginx/nginx.conf
+      - ./nginx/dev:/etc/nginx
     ports:
       - "${NGINX_PORT}:80"

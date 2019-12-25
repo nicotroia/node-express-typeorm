@@ -1,4 +1,5 @@
-FROM nginx:latest
+FROM nginx:alpine
 
-COPY . /etc/nginx
-COPY . /etc/nginx/conf.d
+# COPY . /nginx
+COPY ./prod/nginx.conf /etc/nginx/nginx.conf
+WORKDIR /nginx
