@@ -2,6 +2,7 @@
 /.vscode
 node_modules
 /dist
+/api/dist
 /build
 /coverage
 .env
