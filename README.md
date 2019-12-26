@@ -1,4 +1,4 @@
-# Node.js + Express + TypeORM with TypeScript
+# Node/Express/Typescript + Postgres + Nginx on Docker
 
 ## Setting up development environment
 
@@ -19,7 +19,7 @@ Prod will start 2 additional node services load-balanced via nginx
 
 Node is running on port `3000`. You can connect to the container by running the following command:
 
-`docker exec -it my-node bash`
+`docker exec -it node0 bash`
 
 ### PostgreSQL
 
