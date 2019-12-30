@@ -5,25 +5,28 @@ import * as express from 'express';
 import * as bodyParser from 'body-parser';
 
 import * as HomeController from './controller/HomeController';
-import typeOrmConfig from './typeorm.config';
+import typeOrmConfig from '../typeorm.config';
 
 // console.log('process.env', process.env);
 // console.log('typeOrmConfig', typeOrmConfig);
 
 createConnection(typeOrmConfig).then(async connection => {
-    const app = express();
-    app.use(bodyParser.json());
+  // setting true will drop tables and recreate
+  await connection.synchronize();
 
-    app.get('/', HomeController.helloAction);
+  const app = express();
+  app.use(bodyParser.json());
 
-    app.use((req: Request, res: Response, next: NextFunction) => {
-        res.status(404).send('Not found');
-    });
+  app.get('/', HomeController.helloAction);
 
-    app.use((err: any, req: Request, res: Response, next: NextFunction) => {
-        res.status(500).json({ code: 500, message: err.message }).end();
-    });
+  app.use((req: Request, res: Response, next: NextFunction) => {
+    res.status(404).send('Not found');
+  });
 
-    app.listen(process.env.NODE_PORT);
-    console.log(`Express application (${process.env.NODE_ENV}) is up and running on port ${process.env.NODE_PORT}`);
+  app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+    res.status(500).json({ code: 500, message: err.message }).end();
+  });
+
+  app.listen(process.env.NODE_PORT);
+  console.log(`Express application (${process.env.NODE_ENV}) is up and running on port ${process.env.NODE_PORT}`);
 }).catch(error => console.log('TypeORM connection error: ', error));

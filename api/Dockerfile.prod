@@ -1,0 +1,15 @@
+FROM mhart/alpine-node:latest as builder-prod
+
+RUN apk update
+RUN apk add bash curl postgresql-client
+RUN npm install -g typescript typeorm
+
+WORKDIR /api
+COPY package.json ./package.json
+RUN npm install
+COPY . ./
+RUN npm run build
+COPY . ./
+
+CMD until pg_isready --username=${PG_USER} --host=${PG_HOST}; do sleep 1; done \
+  && npm start

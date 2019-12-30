@@ -1,46 +1,61 @@
 version: '3.7'
 
 services:
-  node0:
+  node0-prod:
+    build:
+      context: ./api
+      dockerfile: Dockerfile.prod
     container_name: node0-prod
+    env_file: ./.env
     environment:
       NODE_ENV: 'production'
       MESSAGE: 'hello from instance 0'
-    command: npm run start
-
-  node1:
-    build: ./api
-    container_name: node1-prod
-    env_file: ./.env
     tty: true
-    expose:
-      - "${NODE_PORT}"
     depends_on:
       - postgres0
-    volumes:
-      - ./api:/api
+    # volumes:
+    #   - ./api:/api
+    # command: npm run start
+
+  node1-prod:
+    # build: ./api
+    build:
+      context: ./api
+      dockerfile: Dockerfile.prod
+    container_name: node1-prod
+    env_file: ./.env
     environment:
       NODE_ENV: 'production'
       MESSAGE: 'hello from instance 1'
-    command: npm run start
+    tty: true
+    # expose:
+    #   - "${NODE_PORT}"
+    depends_on:
+      - postgres0
+    # volumes:
+    #   - ./api:/api
+    # command: npm run start
     # networks:
     #   - my-network
 
-  node2:
-    build: ./api
+  node2-prod:
+    # build: ./api
+    build:
+      context: ./api
+      dockerfile: Dockerfile.prod
     container_name: node2-prod
     env_file: ./.env
-    tty: true
-    expose:
-      - "${NODE_PORT}"
-    depends_on:
-      - postgres0
-    volumes: 
-      - ./api:/api
     environment:
       NODE_ENV: 'production'
       MESSAGE: 'hello from instance 2'
-    command: npm run start
+    tty: true
+    # expose:
+    #   - "${NODE_PORT}"
+    depends_on:
+      - postgres0
+    # volumes: 
+    #   - ./api:/api
+    # command: npm run start
     # networks:
       # - my-network
 
@@ -50,13 +65,14 @@ services:
       - ./nginx/error.log:/etc/nginx/error_log.log
       - ./nginx/cache/:/etc/nginx/cache
       # - /etc/letsencrypt/:/etc/letsencrypt/
-    expose:
-      - "80"
-      - "8080"
-    ports:
-      - "8080:80"
-      - "443:443"
+    # expose:
+    #   - "80"
+    #   - "8080"
+    # ports:
+    #   # - "8080:80"
+    #   - "80:80"
+    #   - "443:443"
     # links:
-    #   - node0
-    #   - node1
-    #   - node2
+    #   - node0-prod
+    #   - node1-prod
+    #   - node2-prod

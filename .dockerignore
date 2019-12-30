@@ -2,4 +2,5 @@
 *Dockerfile*
 *docker-compose*
 node_modules
+dist
 /postgres/data

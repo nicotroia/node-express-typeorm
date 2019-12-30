@@ -48,9 +48,18 @@ init_user_and_db() {
   psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
     CREATE USER $PG_USER WITH PASSWORD '$PG_PASS';
     CREATE DATABASE $PG_DATABASE;
-    GRANT ALL PRIVILEGES ON DATABASE $PG_DATABASE TO $PG_USER;
+    GRANT ALL PRIVILEGES ON DATABASE $PG_DATABASE TO $PG_USER;    
 EOSQL
 }
+
+# CREATE TABLE IF NOT EXISTS greetings (
+#   id serial,
+#   text string,
+#   PRIMARY KEY (id)
+# );
+# ALTER TABLE greetings OWNER TO $PG_USER;
+# REVOKE ALL ON TABLE greetings FROM PUBLIC;
+# GRANT ALL ON TABLE greetings TO $PG_USER;
 
 # Executes the main routine with environment variables
 # passed through the command line. We don't use them in

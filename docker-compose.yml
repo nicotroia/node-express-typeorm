@@ -1,19 +1,19 @@
 version: '3.7'
 
 services:
-  node0:
-    build: ./api
-    container_name: node0
-    env_file: ./.env
-    tty: true
-    expose:
-      - "${NODE_PORT}"
-    depends_on:
-      - postgres0
-    volumes: 
-      - ./api:/api
-    # networks:
-    #   - my-network
+  # node0:
+  #   # build: ./api
+  #   container_name: node0
+  #   env_file: ./.env
+  #   tty: true
+  #   # expose:
+  #   #   - "${NODE_PORT}"
+  #   depends_on:
+  #     - postgres0
+  #   volumes: 
+  #     - ./api:/api
+  #   # networks:
+  #   #   - my-network
 
   postgres0:
     # image: postgres:11.6
@@ -28,22 +28,34 @@ services:
       - "${PG_PORT}:${PG_PORT}"
     volumes:
       - ./postgres/postgres.sh:/docker-entrypoint-initdb.d/init.sh
-      - ./postgres/data:/var/lib/postgresql/data
+      - ./postgres:/var/lib/postgresql
+      # - ./postgres/data:/var/lib/postgresql/data:z
+      # - ./postgres:/var/lib/postgresql
     # networks:
     #   - my-network
 
   nginx0:
     # image: nginx:alpine
     build: ./nginx
-    tty: true
+    # tty: true
     container_name: nginx0
     restart: always
     env_file: ./.env
+    expose:
+      - "80"
+      - "8080"
+    ports:
+      - "80:80"
+      - "${NGINX_PORT}:80"
     # links:
     #   - node0
-    command: ["nginx", "-g", "daemon off;"]
+    # command: ["nginx", "-g", "daemon off;"]
     # networks:
     #   - my-network
 
+# volumes: 
+  # - postgres_data:/var/lib/postgresql/data
+  # postgres_data
+  
 # networks:
 #   my-network:

@@ -1,17 +1,42 @@
 version: '3.7'
 
 services:
-  node0:
-    container_name: node0-dev
+  node0-dev:
+    # build: ./api
+    build:
+      context: ./api
+      dockerfile: Dockerfile.dev
+    # container_name: node0-dev
+    env_file: ./.env
     environment:
       NODE_ENV: 'development'
       MESSAGE: 'hello from instance 0'
-    expose:
-      - "${NODE_PORT}"
-    command: npm run dev
+    tty: true
+    # ports:
+    #   - "${NODE_PORT}:${NODE_PORT}"
+    # expose:
+    #   - "${NODE_PORT}"
+    depends_on:
+      - postgres0
+    # volumes:
+    #   # - /api
+    #   - type: bind
+    #     source: ./api
+    #     target: /api
+    # volumes: 
+    #   - ./api:/api
+      # - /api/dist
+      # - /api/node_modules
+    # networks:
+    #   - my-network
+    # command: npm run dev
 
   nginx0:
     volumes:
       - ./nginx/dev:/etc/nginx
-    ports:
-      - "${NGINX_PORT}:80"
+    # expose:
+    #   - "80"
+    #   - "8080"
+    # ports:
+    #   - "80:80"
+    #   - "${NGINX_PORT}:80"
