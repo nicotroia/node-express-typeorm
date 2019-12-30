@@ -2,8 +2,6 @@ import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConne
 
 import { Greeting } from './src/entity/Greeting';
 
-console.log('RUNNING typeorm config');
-
 const typeOrmConfig: PostgresConnectionOptions = {
   type: 'postgres',
   host: process.env.PG_HOST,

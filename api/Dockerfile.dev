@@ -11,5 +11,7 @@ COPY . ./
 RUN npm run build
 COPY . ./
 
+EXPOSE ${NODE_PORT}
+
 CMD until pg_isready --username=${PG_USER} --host=${PG_HOST}; do sleep 1; done \
     && npm run fixtures && npm run dev
