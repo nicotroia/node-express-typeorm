@@ -23,8 +23,8 @@ services:
     #   - type: bind
     #     source: ./api
     #     target: /api
-    # volumes: 
-    #   - ./api:/api
+    volumes: 
+      - ./api/src:/api/src
       # - /api/dist
       # - /api/node_modules
     # networks:
